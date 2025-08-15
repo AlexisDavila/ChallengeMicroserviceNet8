@@ -5,11 +5,9 @@ namespace Account.Domain.Repository;
 
 public interface IMovementRepository
 {
-   Task<List<Movement>> GetMovementsAsync(string accountId);
-
-
-   Task<bool> CreateMovementAsync(Movement movement);
-   Task<bool> UpdateMovementAsync(Movement movement);
-   Task<bool> DeleteMovementAsync(Guid movementId);
+   Task<List<MovementEntity>> GetMovementsAsync(int accountId);
+   Task<bool> CreateMovementAsync(MovementEntity movement);
+   Task<bool> UpdateMovementAsync(MovementEntity movement);
+   Task<bool> DeleteMovementAsync(int movementId);
 
 }

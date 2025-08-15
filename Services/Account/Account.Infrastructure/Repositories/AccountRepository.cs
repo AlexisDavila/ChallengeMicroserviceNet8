@@ -41,9 +41,9 @@ public class AccountRepository : IAccountRepository
    {
       await using var connection = new NpgsqlConnection(_configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
       var affected = await connection.ExecuteAsync
-            (@$"INSERT INTO Account(Number,Type,InitialBalance,Status,CustomerId) 
-            VALUES ({account.Number}, {account.Type}, {account.InitialBalance}, {account.Status}, {account.CustomerId})"
-            );
+         (@$"INSERT INTO Account(Number,Type,InitialBalance,Status,CustomerId) 
+         VALUES ({account.Number}, {account.Type}, {account.InitialBalance}, {account.Status}, {account.CustomerId})"
+         );
 
       if (affected == 0)
       {

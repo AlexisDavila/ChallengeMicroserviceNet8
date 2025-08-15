@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Account.Domain.Entities;
 
-public class Movement
+public class MovementEntity
 {
    [Key]
    [Required]

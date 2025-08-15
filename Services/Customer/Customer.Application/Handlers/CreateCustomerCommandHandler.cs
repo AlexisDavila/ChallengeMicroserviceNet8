@@ -1,4 +1,3 @@
-using System;
 using AutoMapper;
 using Customer.Application.Commands;
 using Customer.Application.Responses;
@@ -23,11 +22,12 @@ public class CreateCustomerCommandHandler : IRequestHandler<CreateCustomerComman
    
    public async Task<CustomerResponse> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
    {
+      _logger.LogInformation($"Start Customer registration.");
       var customerEntity = _mapper.Map<CustomerEntity>(request);
       //var customerEntity = new CustomerEntity();
-      Console.WriteLine($"Creating customer: {request}");
+      _logger.LogInformation($"Creating customerRequest: {request}");
       _mapper.Map(request, customerEntity, typeof(CreateCustomerCommand), typeof(CustomerEntity));
-      Console.WriteLine($"Creating customer with Name: {customerEntity.Name}, Address: {customerEntity.Address}, Phone: {customerEntity.Phone}");
+      _logger.LogInformation($"Creating customer with Name: {customerEntity.Name}, Address: {customerEntity.Address}, Phone: {customerEntity.Phone}");
       var createdCustomer = await _customerRepository.AddAsync(customerEntity);
       _logger.LogInformation($"Customer with Id {createdCustomer.Id} created successfully.");
       var result = _mapper.Map<CustomerResponse>(createdCustomer);
